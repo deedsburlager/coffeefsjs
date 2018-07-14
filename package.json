@@ -1,0 +1,22 @@
+{
+  "name": "coffeefsjs",
+  "version": "1.0.0",
+  "description": "CRUD app for Coffee",
+  "main": "index.js",
+  "scripts": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/deedsburlager/coffeefsjs.git"
+  },
+  "author": "Deeds Burlager",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/deedsburlager/coffeefsjs/issues"
+  },
+  "homepage": "https://github.com/deedsburlager/coffeefsjs#readme",
+  "dependencies": {
+    "express": "^4.16.3"
+  }
+}
