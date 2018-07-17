@@ -1,9 +1,6 @@
 const router = require('express').Router();
 const mongoose = require('mongoose');
 //From server.js What the server is doing.
-router.use(function(req, res, next){
-    res.end("Good Morning!");
-});
 //O CRUD
 //Create
 router.post('/file', function(req, res, next){
