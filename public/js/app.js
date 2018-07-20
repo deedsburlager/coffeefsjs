@@ -15,6 +15,7 @@ function renderFiles(files){
         <strong>${file.title}</strong> - ${file.description}
         <span class="pull-right">
         <button type="button" class="btn btn-xs btn-default" onclick="handleEditFileClick(this)" data-file-id="${file._id}">Edit</button>
+        <button type="button" class="btn btn-xs btn-defualt" onclick="handleDeleteFileClick(this)" data-file-id="${file._id}">Delete</button>
         </span>
     </li>`);
     const html = `<ul class="list-group">${listItems.join('')}</ul>`;
@@ -37,7 +38,7 @@ function setForm(data){
 
     const file = {
         title: data.title || '',
-        discription: data.description || '',
+        description: data.description || '',
         _id: data._id || '',
     };
 
@@ -56,9 +57,20 @@ function submitFileForm(){
     const fileData = {
         title: $('#file-title').val(),
         description: $('#file-description').val(),
+        _id: $('#file-id').val(),
     };
-    fetch('/api/file', {
-        method: 'post',
+console.log("fileData Today", JSON.stringify(fileData))
+    //Var to hold the new route based on _id
+    let method, url;
+    if (fileData._id){
+        method = 'PUT';
+        url = '/api/file/' + fileData._id;
+    }else{
+        method = 'POST';
+        url = '/api/file';
+    }
+    fetch(url, {
+        method: method,
         body: JSON.stringify(fileData),
         headers: {
             'Content-Type': 'application/json'
@@ -66,7 +78,7 @@ function submitFileForm(){
     })
     .then(response => response.json())
     .then(file => {
-        console.og("Posted", file);
+        console.log("Posted", file);
         setForm();
         refreshFileList();
     })
@@ -86,6 +98,30 @@ function handleEditFileClick(element){
     if (file){
         setForm(file)
     }
+}
+
+function handleDeleteFileClick(element){
+    const fileId = element.getAttribute('data-file-id');
+
+    if (confirm("Really?")){
+        deleteFile(fileId);
+    }
+}
+// Delete Function
+function deleteFile(fileId){
+    const url = '/api/file/' + fileId;
+
+    fetch(url, {
+        method: 'DELETE',
+        headers: {'Content-Type': 'appliation/json'}
+    })
+    .then(response => response.json())
+    .then(response => {
+        refreshFileList();
+    })
+    .catch(err => {
+        console.error("In need of Resurrection", err);
+    });
 }
 
 //Clear the Form on Page load

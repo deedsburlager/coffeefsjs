@@ -1,16 +1,15 @@
 //Use Mongoose
 const mongoose = require('mongoose');
-
 //SCHEMA the stuff on top right?
 const FileSchema = new mongoose.Schema({
     title: String,
     description: String,
     created_at: { type: Date, default: Date.now },
+    deleted: {type: Boolean, default: false},
 });
 const File = mongoose.model("File", FileSchema);
-
-
-File.count({}, function(err, count){
+//Question my need for this with MongoDB
+File.countDocuments({}, function(err, count){
     if (err){
         throw err;
     }
@@ -22,5 +21,4 @@ File.count({}, function(err, count){
         console.log("DB seeded")
     });
 });
-
 module.exports = File;

@@ -32,7 +32,7 @@
                         <a class="nav-link" href="#">Community</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link disabled" href="#">Disabled</a>
+                        <a class="nav-link disabled" href="#"></a>
                     </li>
                     </ul>
                 </div>
@@ -47,19 +47,19 @@
                     <div id="list-container"></div>
                     <div id="form-container" class="panel">
                         <form id="add-file-form">
-                        <input type="hidden" id="file-id" value="" />
+                        <input type="hidden" id="file-id" value="">
                         
                         <legend id="form-label">Coffee</legend>
                         <div class="form-group">
                             <label for="file-title">Origin</label>
-                            <input type="text" class="form-control" id="file-title" placeholder="Title">
+                            <input type="text" class="form-control" id="file-title" placeholder="Title" name="title">
                         </div>
                         <div class="form-group">
                             <label for="file-description">Experience</label>
-                            <input type="text" class="form-control" id="file-description" placeholder="Description">
+                            <input type="text" class="form-control" id="file-description" placeholder="Description" name="description">
                         </div>
                         <button type="button" onclick="submitFileForm()" class="btn btn-success">Submit</button>
-                        <button type="button" onclick="cancelFileForm()" class="btn btn-link">cancel</button>
+                        <button type="button" onclick="cancelFileForm()" class="btn btn-link">Cancel</button>
                     </form>
                     </div>
                 </div>

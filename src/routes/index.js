@@ -4,18 +4,19 @@ const mongoose = require('mongoose');
 //O CRUD
 //Create
 router.post('/file', function(req, res, next){
-   const File = mongoose.model('File');
-   const fileData = {
-       title: req.body.title,
-       description: req.body.description,
-   };
+    const File = mongoose.model('File');
+    const fileData = {
+        title: req.body.title,
+        description: req.body.description,
+    };
 
-   File.create(fileData, function(err, newFile){
-       if(err){
-           console.error(err);
-           return res.status(500).json(err);
-       }
-       res.json(newFile);
+    File.create(fileData, function(err, newFile){
+        if(err){
+            console.error("There was an error", err);
+            return res.status(500).json(err);
+            return res.send("error", err);
+        }
+        res.json(newFile);
     });
 });
 //Read
@@ -29,23 +30,56 @@ router.get('/file/:fileId', function(req, res, next){
 });
 //Update
 router.put('/file/:fileId', function(req, res, next){
-    const data = req.body;
-    console.log("PUT DATA", data);
-    res.end('Update `${req.params.fileId}`');
+    const File = mongoose.model('File');
+    const fileId = req.params.fileId;
+    File.findById(fileId, function(err, file){
+        if (err){
+            console.error(err);
+            return res.status(500).json(err);
+        }if(!file){
+            return res.status(404).json({message: "File not found"});
+        }
+        file.title = req.body.title;
+        file.description = req.body.description;
+        file.save(function(err, savedFile){
+            if (err){
+                console.error(err);
+                return res.status(500).json(err);
+            }
+            res.json(savedFile);
+        })
+    })
 });
 //Delete
 router.delete('/file/:fileId', function(req, res, next){
-    res.end('Delete `${req.params.fileId}`');
+    const File = mongoose.model('File');
+    const fileId = req.params.fileId;
+
+    File.findById(fileId, function(err, file){
+        if(err){
+            console.log(err);
+            return res.status(500).json(err);
+        }
+        if (!file){
+            return res.status(404).json({message: "File not Found"});
+        }
+        file.deleted = true;
+        file.save(function(err, deletedFile){
+            res.json(deletedFile);
+        })
+    })
 });
-//List
+//List while omitting deleted
 router.get('/file', function(req, res, next){
-    mongoose.model('File').find({}, function(err, files){
+    const File = mongoose.model('File');
+
+    File.find({deleted: {$ne: true}}, function(err, files){
         if (err) {
             console.log(err);
             return res.status(500).json(err);
-        };
+        }
         res.json(files);
-})
+});
 });
 
 //Call me here
