@@ -59,7 +59,7 @@ function submitFileForm(){
         description: $('#file-description').val(),
         _id: $('#file-id').val(),
     };
-console.log("fileData Today", JSON.stringify(fileData))
+console.log("fileData", JSON.stringify(fileData))
     //Var to hold the new route based on _id
     let method, url;
     if (fileData._id){

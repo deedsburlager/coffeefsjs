@@ -12,7 +12,6 @@ router.post('/file', function(req, res, next){
 
     File.create(fileData, function(err, newFile){
         if(err){
-            console.error("There was an error", err);
             return res.status(500).json(err);
             return res.send("error", err);
         }
@@ -24,7 +23,7 @@ router.get('/file/:fileId', function(req, res, next){
     const { fileId } = req.params;
     const file = FILES.find(entry => entry.id === fileId);
     if (!file) {
-        return res.status(404).end(`Could not find file '${fileId}'`);
+        return res.status(404).end(`Where did it go? '${fileId}'`);
     }
     res.json(file);
 });
@@ -34,7 +33,6 @@ router.put('/file/:fileId', function(req, res, next){
     const fileId = req.params.fileId;
     File.findById(fileId, function(err, file){
         if (err){
-            console.error(err);
             return res.status(500).json(err);
         }if(!file){
             return res.status(404).json({message: "File not found"});
@@ -43,7 +41,6 @@ router.put('/file/:fileId', function(req, res, next){
         file.description = req.body.description;
         file.save(function(err, savedFile){
             if (err){
-                console.error(err);
                 return res.status(500).json(err);
             }
             res.json(savedFile);
@@ -57,7 +54,6 @@ router.delete('/file/:fileId', function(req, res, next){
 
     File.findById(fileId, function(err, file){
         if(err){
-            console.log(err);
             return res.status(500).json(err);
         }
         if (!file){
@@ -75,7 +71,6 @@ router.get('/file', function(req, res, next){
 
     File.find({deleted: {$ne: true}}, function(err, files){
         if (err) {
-            console.log(err);
             return res.status(500).json(err);
         }
         res.json(files);
