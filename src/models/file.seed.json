@@ -1,14 +1,14 @@
 [
     {
-    "title": "Colombia San Antonio",
-    "description": "Fruit, Tea, Herbal Bitters"
+    "origin": "Colombia San Antonio",
+    "think": "Fruit, Tea, Herbal Bitters"
     },
     {
-    "title": "Costa Rica La Rosa",
-    "description": "Apple, Toast, Butter"
+    "origin": "Costa Rica La Rosa",
+    "think": "Apple, Toast, Butter"
     },
     {
-    "title": "Guatemala Los Volcanes",
-    "description": "Good, Stuff, Meh"
+    "origin": "Guatemala Los Volcanes",
+    "think": "Good, Stuff, Meh"
     }
 ]

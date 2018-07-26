@@ -1,6 +1,7 @@
-//Must haves.
+//Must haves. This pulls in the modules for use.
 const express = require('express');
 const bodyParser = require('body-parser');
+//Where to go.
 const path = require('path');
 require('./models/file.model.js');
 const config = require('./config');

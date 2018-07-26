@@ -1,5 +1,5 @@
 require('dotenv').config();
-
+//Set up for db
 module.exports = {
     appName: 'Running on Caffine',
     port: 3030,

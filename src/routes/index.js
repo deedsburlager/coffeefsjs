@@ -6,8 +6,8 @@ const mongoose = require('mongoose');
 router.post('/file', function(req, res, next){
     const File = mongoose.model('File');
     const fileData = {
-        title: req.body.title,
-        description: req.body.description,
+        origin: req.body.origin,
+        think: req.body.think,
     };
 
     File.create(fileData, function(err, newFile){
@@ -37,8 +37,8 @@ router.put('/file/:fileId', function(req, res, next){
         }if(!file){
             return res.status(404).json({message: "File not found"});
         }
-        file.title = req.body.title;
-        file.description = req.body.description;
+        file.origin = req.body.origin;
+        file.think = req.body.think;
         file.save(function(err, savedFile){
             if (err){
                 return res.status(500).json(err);

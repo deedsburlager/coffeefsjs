@@ -3,7 +3,7 @@ function getFiles(){
     return fetch('/api/file')
     .then(response => response.json())
     .then(files => {
-        console.log("I found goodies:", files);
+        console.log("I Found the Coffee!", files);
         return files;
     })
     .catch(error => console.error("GETFILES:", error));
@@ -12,13 +12,14 @@ function getFiles(){
 function renderFiles(files){
     const listItems = files.map(file => `
     <li class="list-group-item">
-        <strong>${file.title}</strong> - ${file.description}
+        <strong>${file.origin}</strong><br>
+        <strong>Think:</strong> ${file.think}
         <span class="pull-right">
         <button type="button" class="btn btn-xs btn-default" onclick="handleEditFileClick(this)" data-file-id="${file._id}">Edit</button>
         <button type="button" class="btn btn-xs btn-defualt" onclick="handleDeleteFileClick(this)" data-file-id="${file._id}">Delete</button>
         </span>
     </li>`);
-    const html = `<ul class="list-group">${listItems.join('')}</ul>`;
+    const html = `<ul class="list-group list-group-flush">${listItems.join('')}</ul>`;
 
     return html;
 }
@@ -37,14 +38,15 @@ function setForm(data){
     data = data || {};
 
     const file = {
-        title: data.title || '',
-        description: data.description || '',
+        origin: data.origin || '',
+        think: data.think || '',
         _id: data._id || '',
     };
-
-    $('#file-title').val(file.title);
-    $('#file-description').val(file.description);
+//If this here mean this there.
+    $('#file-origin').val(file.origin);
+    $('#file-think').val(file.think);
     $('#file-id').val(file._id);
+    //Let me see some _id sir.
     if (file._id){
         $('#form-label').text("Edit");
     }else{
@@ -55,8 +57,8 @@ function setForm(data){
 function submitFileForm(){
     console.log("Submitted");
     const fileData = {
-        title: $('#file-title').val(),
-        description: $('#file-description').val(),
+        origin: $('#file-origin').val(),
+        think: $('#file-think').val(),
         _id: $('#file-id').val(),
     };
 console.log("fileData", JSON.stringify(fileData))
@@ -83,7 +85,7 @@ console.log("fileData", JSON.stringify(fileData))
         refreshFileList();
     })
     .catch(err => {
-        console.error("Broken", err);
+        console.error("Busted.", err);
     })
     console.log("The data", fileData);
 }
@@ -91,7 +93,7 @@ console.log("fileData", JSON.stringify(fileData))
 function cancelFileForm(){
     setForm();
 }
-
+// Edit Button Action
 function handleEditFileClick(element){
     const fileId = element.getAttribute('data-file-id');
     const file = window.fileList.find(file => file._id === fileId);
@@ -99,7 +101,7 @@ function handleEditFileClick(element){
         setForm(file)
     }
 }
-
+//Delete Button Action
 function handleDeleteFileClick(element){
     const fileId = element.getAttribute('data-file-id');
 

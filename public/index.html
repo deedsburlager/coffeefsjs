@@ -3,7 +3,8 @@
 <head>
     <!-- Meta Tags -->
     <meta charset="utf-8" />
-    <!-- <meta name="viewport" content="width=device=width, height=device-height, intial-scale=1.0, user-scalable=yes"> -->
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
     <title>Deeds' Full Stacked</title>
     <!-- Sources -->
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
@@ -42,26 +43,27 @@
         <header> 
             <div class="container">
                 <h1>The Community</h1>
-                    <div id="list-container"></div>
+                <div id="list-container"></div>               
                     <div id="form-container" class="panel">
                     <form id="add-file-form">
                     <input type="hidden" id="file-id" value="">
                 <legend id="form-label">Contribute</legend>
                 <!-- Coffee Input -->
                     <div class="form-group">
-                        <label for="file-title">Coffee</label>
-                        <input type="text" class="form-control" id="file-title" placeholder="Origin" name="title">
+                        <label for="file-origin">Coffee</label>
+                        <input type="text" class="form-control" id="file-origin" placeholder="Origin" name="origin">
                     </div>
                 <!-- Experience Input -->
                     <div class="form-group">
-                        <label for="file-description">Experience</label>
-                        <input type="text" class="form-control" id="file-description" placeholder="Think" name="description">
+                        <label for="file-think">Experience</label>
+                        <input type="text" class="form-control" id="file-think" placeholder="Think" name="think">
                     </div>
                 <!-- Buttons -->
                         <button type="button" onclick="submitFileForm()" class="btn btn-secondary">Save</button>
                         <button type="button" onclick="cancelFileForm()" class="btn btn-light">Cancel</button>
                     </form>
                     </div>
+
             </div>
         </header>
 

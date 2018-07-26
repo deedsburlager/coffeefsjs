@@ -1,13 +1,13 @@
 //Use Mongoose
 const mongoose = require('mongoose');
 //SCHEMA the stuff on top right?
-const FileSchema = new mongoose.Schema({
-    title: String,
-    description: String,
+const CoffeeSchema = new mongoose.Schema({
+    origin: String,
+    think: String,
     created_at: { type: Date, default: Date.now },
     deleted: {type: Boolean, default: false},
 });
-const File = mongoose.model("File", FileSchema);
+const File = mongoose.model("File", CoffeeSchema);
 //Question my need for this with MongoDB
 File.countDocuments({}, function(err, count){
     if (err){
