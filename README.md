@@ -3,29 +3,30 @@
 Collective Coffee Experience Sharing
 ******************************************************************
 Things needed:
-MongoDB, node & NPM installed
-Mongoose
-body-parser
-express
-dotenv
+MongoDB, node, & NPM installed
+Mongoose, 
+body-parser, 
+express, 
+dotenv, 
+will update as part of .json package.
 ******************************************************************
 A CRUD App
 ******************************************************************
 This app will:
 
-Create a coffee profile
-Read existing coffee profiles
-Update existing coffee profiles
-Delete existing coffee profiles
-List all non deleted coffee profiles
+Create a coffee profile,
+Read existing coffee profiles,
+Update existing coffee profiles,
+Delete existing coffee profiles,
+List all non deleted coffee profiles.
 
 ******************************************************************
 MEBN Stack
 ******************************************************************
-Mongoose
-Express
-Bootsrap
-Node
+Mongoose,
+Express,
+Bootsrap,
+Node,
 *****************************************************************
 Start
 ******************************************************************
